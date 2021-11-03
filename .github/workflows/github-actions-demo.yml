@@ -1,0 +1,14 @@
+# This is an intermediate workflow to help you produce a HTML extra test results report
+
+name: "Newman Tests"
+on: [push, pull_request]
+
+jobs:
+  test-api:
+    runs-on: ubuntu-latest
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      
+      - name: Run API Tests
+        run: newman run "Restful Booker BVT.postman_collection.json" -e Production.postman_environment.json 
